@@ -2,6 +2,9 @@ package org.ow2.osgi.scanner;
 
 import org.osgi.framework.Bundle;
 
+/**
+ * This callback will be notified for each resource available discovered by the scanner.
+ */
 public interface IBundleScannerCallback {
 
 	/**
