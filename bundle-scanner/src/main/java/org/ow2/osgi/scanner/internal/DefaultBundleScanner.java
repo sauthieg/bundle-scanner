@@ -8,12 +8,18 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
+import org.apache.felix.ipojo.annotations.Component;
+import org.apache.felix.ipojo.annotations.Property;
+import org.apache.felix.ipojo.annotations.Provides;
 import org.osgi.framework.Bundle;
 import org.ow2.osgi.scanner.IBundleScanner;
 import org.ow2.osgi.scanner.IBundleScannerCallback;
 
+@Component
+@Provides
 public class DefaultBundleScanner implements IBundleScanner {
-	
+
+    @Property(name = "scan.inner.jars", value = "true")
 	private boolean scanInnerJars = true;
 	
 	public boolean isScanInnerJars() {

@@ -1,0 +1,1 @@
+Export-Package org.ow2.osgi.scanner;version=${project.version}
