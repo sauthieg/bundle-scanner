@@ -1,0 +1,1 @@
+This other file is at the root of the inner jar file.

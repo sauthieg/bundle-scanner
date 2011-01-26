@@ -7,6 +7,7 @@
 
   <modules>
     <module>bundle-scanner</module>
+    <module>tests</module>
   </modules>
 
   <build>
@@ -34,6 +35,9 @@
                 <goal>ipojo-bundle</goal>
               </goals>
               <phase>package</phase>
+              <configuration>
+                <metadata>target/classes/META-INF/metadata.xml</metadata>
+              </configuration>
             </execution>
           </executions>
         </plugin>

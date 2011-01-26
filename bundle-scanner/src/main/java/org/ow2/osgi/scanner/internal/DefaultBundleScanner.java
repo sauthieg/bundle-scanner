@@ -63,13 +63,32 @@ public class DefaultBundleScanner implements IBundleScanner {
 			// . (dot) is the root of the bundle
 			searched = "/";
 		}
+
+        handleDirectoryRecursive(bundle, callback, path, searched);
+	}
+
+
+    private void handleDirectoryRecursive(final Bundle bundle,
+                                          final IBundleScannerCallback callback,
+                                          final String container,
+                                          final String path) {
+
+        // getEntryPath acts as a ls in a directory: sub-paths are not shown
 		@SuppressWarnings("unchecked")
-		Enumeration<String> paths = bundle.getEntryPaths(searched);
+		Enumeration<String> paths = bundle.getEntryPaths(path);
 		Collection<String> entries = Collections.list(paths);
 		for (String entry : entries) {
-			callback.onResource(bundle, path, entry);
+            if (entry.endsWith("/")) {
+                // Traverse sub directories
+                handleDirectoryRecursive(bundle, callback, container, entry);
+            } else {
+                // Notify the found resource
+                callback.onResource(bundle, container, entry);
+            }
+
 		}
-	}
+
+    }
 
 	private void handleJar(final Bundle bundle,
 			               final IBundleScannerCallback callback,
